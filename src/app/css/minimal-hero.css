@@ -1,0 +1,223 @@
+/* ── Minimal hero ── */
+.minimal-hero {
+  --background: var(--cc-bg);
+  --primary: var(--cc-border);
+  position: relative;
+  overflow: hidden;
+  background: var(--background);
+}
+
+
+.minimal-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.minimal-hero__bg-gradient {
+  position: absolute;
+  inset: 0;
+  opacity: 0.7;
+  background:
+    linear-gradient(
+      to bottom,
+      var(--background) 0%,
+      var(--background) 20%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    radial-gradient(
+      ellipse at 50% -10%,
+      var(--primary) 0%,
+      var(--background) 100%
+    );
+}
+
+.minimal-hero__bg-rays {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 200%;
+  height: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background-image: repeating-conic-gradient(
+    from 0deg at 50% 0%,
+    var(--primary) 0deg,
+    var(--primary) 2deg,
+    transparent 2deg,
+    transparent 12deg
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.minimal-hero__bg-rays--light {
+  opacity: 0.2;
+}
+
+.minimal-hero__bg-rays--dark {
+  display: none;
+  opacity: 0.6;
+}
+
+
+
+.minimal-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.minimal-hero__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (min-width: 1280px) {
+  .minimal-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 393px;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+}
+
+.minimal-hero__main-col,
+.minimal-hero__side-col {
+  min-width: 0;
+}
+
+.minimal-hero__side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (min-width: 1280px) {
+  .minimal-hero__main-col {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .minimal-hero__side-col {
+    min-height: 100%;
+  }
+
+  .minimal-hero__carousel-card {
+    flex: 1;
+    height: 100%;
+  }
+
+  .minimal-hero__promo-card {
+    flex: 1;
+    min-height: 0;
+  }
+}
+
+.minimal-hero__carousel-card {
+  border: 3px solid var(--cc-border);
+  border-radius: var(--cc-radius-card);
+  background: var(--cc-card);
+  overflow: hidden;
+  box-shadow: var(--cc-shadow-md);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.minimal-hero__carousel-card:hover {
+  border-color: var(--cc-accent);
+}
+
+.minimal-hero__promo-card {
+  border: 3px solid var(--cc-border);
+  border-radius: var(--cc-radius-card);
+  background: var(--cc-card);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--cc-shadow-sm);
+}
+
+.minimal-hero__promo-card:hover {
+  border-color: var(--cc-accent);
+  box-shadow: var(--cc-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.minimal-hero__shape {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid var(--cc-accent);
+  opacity: 0.15;
+  pointer-events: none;
+  animation: cc-float 6s ease-in-out infinite;
+}
+
+.minimal-hero__shape--1 {
+  width: 120px;
+  height: 120px;
+  top: 15%;
+  right: 8%;
+  animation-delay: 0s;
+}
+
+.minimal-hero__shape--2 {
+  width: 80px;
+  height: 80px;
+  bottom: 20%;
+  left: 5%;
+  border-radius: var(--cc-radius-card);
+  animation-delay: 2s;
+}
+
+.minimal-hero__shape--3 {
+  width: 60px;
+  height: 60px;
+  top: 40%;
+  left: 12%;
+  background: var(--cc-accent);
+  opacity: 0.08;
+  animation-delay: 4s;
+}
+
+@keyframes cc-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.minimal-hero-carousel .swiper-pagination-bullet-active {
+  background: var(--cc-accent) !important;
+  width: 32px !important;
+}
+
+.minimal-hero-carousel {
+  width: 100%;
+  padding-bottom: 2.25rem;
+}
+
+.minimal-hero-carousel .swiper-pagination {
+  bottom: 12px !important;
+  z-index: 5;
+  line-height: 0;
+}
+
+.minimal-hero-carousel .swiper-pagination-bullet {
+  width: 24px !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  background: #d1d5db !important;
+  opacity: 1 !important;
+  margin: 0 4px !important;
+}
+
+.minimal-hero-carousel .swiper-pagination-bullet-active {
+  background: var(--cc-accent) !important;
+  width: 32px !important;
+}

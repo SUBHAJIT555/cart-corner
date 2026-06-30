@@ -1,0 +1,5 @@
+.minimal-best-seller .new-arrival-card__badge--bestseller {
+  border-color: rgb(255 255 255 / 0.2);
+  background: var(--cc-surface);
+  color: #fff;
+}

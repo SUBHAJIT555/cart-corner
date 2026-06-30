@@ -1,0 +1,517 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap");
+
+/* ── Maximalist design tokens ── */
+:root {
+  --max-purple: #6d28d9;
+  --max-purple-deep: #4c1d95;
+  --max-pink: #ec4899;
+  --max-pink-hot: #f472b6;
+  --max-yellow: #facc15;
+  --max-yellow-bright: #fde047;
+  --max-teal: #14b8a6;
+  --max-orange: #f97316;
+  --max-lime: #a3e635;
+  --max-cream: #fff8e7;
+  --max-ink: #0f0a1a;
+  --max-shadow-pink: 3px 3px 0 #ec4899;
+  --max-shadow-yellow: 3px 3px 0 #facc15;
+  --max-shadow-teal: 3px 3px 0 #14b8a6;
+  --max-shadow-purple: 3px 3px 0 #6d28d9;
+}
+
+/* ── Ticker strip ── */
+.maximalist-ticker {
+  background: linear-gradient(
+    90deg,
+    var(--max-purple-deep),
+    var(--max-pink),
+    var(--max-orange),
+    var(--max-yellow),
+    var(--max-teal),
+    var(--max-purple-deep)
+  );
+  background-size: 300% 100%;
+  animation: maxTickerShift 8s ease infinite;
+  border-bottom: 2px solid var(--max-ink);
+}
+
+@keyframes maxTickerShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.maximalist-ticker-track {
+  animation: maxTickerScroll 22s linear infinite;
+}
+
+@keyframes maxTickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Header shell ── */
+.maximalist-header {
+  font-family: "Euclid Circular A", sans-serif;
+  background: var(--max-cream);
+  border-bottom: 3px solid var(--max-ink);
+  box-shadow: 0 4px 0 var(--max-pink), 0 6px 16px rgba(15, 10, 26, 0.2);
+}
+
+.maximalist-header.is-sticky {
+  box-shadow: 0 3px 0 var(--max-pink), 0 5px 14px rgba(15, 10, 26, 0.25);
+}
+
+.maximalist-header-top {
+  background: var(--max-cream);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.maximalist-header-top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--max-purple) 0px,
+    var(--max-purple) 12px,
+    var(--max-yellow) 12px,
+    var(--max-yellow) 24px,
+    var(--max-pink) 24px,
+    var(--max-pink) 36px,
+    var(--max-teal) 36px,
+    var(--max-teal) 48px
+  );
+}
+
+@media (max-width: 639px) {
+  .maximalist-header-top {
+    padding-bottom: 0;
+  }
+
+  .maximalist-header-top::after {
+    display: none;
+  }
+}
+
+/* ── Logo frame ── */
+.maximalist-logo-wrap {
+  position: relative;
+  padding: 4px 10px;
+  background: #fff;
+  border: 2px solid var(--max-ink);
+  box-shadow: var(--max-shadow-purple);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .maximalist-logo-wrap {
+    padding: 6px 12px;
+    border-width: 3px;
+  }
+}
+
+.maximalist-logo-wrap:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--max-pink);
+}
+
+/* ── Search bar ── */
+.maximalist-search-wrap {
+  border: 2px solid var(--max-ink);
+  box-shadow: var(--max-shadow-yellow);
+  background: #fff;
+  border-radius: 2px;
+  overflow: visible;
+  position: relative;
+  z-index: 20;
+}
+
+@media (min-width: 640px) {
+  .maximalist-search-wrap {
+    border-width: 3px;
+  }
+}
+
+.maximalist-search-wrap .dropdown-content {
+  width: 120px !important;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .maximalist-search-wrap .dropdown-content {
+    width: 160px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .maximalist-search-wrap .dropdown-content {
+    width: 200px !important;
+  }
+}
+
+.maximalist-search-wrap .select-selected {
+  background: var(--max-yellow-bright) !important;
+  border: none !important;
+  border-right: 2px solid var(--max-ink) !important;
+  font-weight: 600;
+  color: var(--max-ink);
+  border-radius: 0 !important;
+  font-size: 12px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  padding-left: 8px !important;
+  padding-right: 24px !important;
+}
+
+@media (min-width: 640px) {
+  .maximalist-search-wrap .select-selected {
+    border-right-width: 3px !important;
+    font-size: 14px !important;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    padding-left: 14px !important;
+  }
+}
+
+.maximalist-search-wrap .select-items {
+  border: 2px solid var(--max-ink);
+  box-shadow: var(--max-shadow-pink);
+  border-radius: 2px;
+  z-index: 10001;
+}
+
+.maximalist-search-wrap .select-items div:hover,
+.maximalist-search-wrap .same-as-selected {
+  background: var(--max-pink-hot) !important;
+  color: var(--max-ink) !important;
+}
+
+.maximalist-search-input {
+  background: #fff !important;
+  border: none !important;
+  border-left: none !important;
+  color: var(--max-ink);
+  font-weight: 500;
+  border-radius: 0 !important;
+}
+
+.maximalist-search-input::placeholder {
+  color: var(--max-purple);
+  font-style: italic;
+}
+
+.maximalist-search-input:focus {
+  outline: none;
+  background: #fffef5 !important;
+}
+
+.maximalist-search-btn {
+  color: var(--max-purple-deep);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.maximalist-search-btn:hover {
+  color: var(--max-pink);
+  transform: scale(1.15);
+}
+
+.maximalist-search-results {
+  border: 2px solid var(--max-ink) !important;
+  box-shadow: var(--max-shadow-teal) !important;
+  border-radius: 2px !important;
+  z-index: 10001 !important;
+}
+
+.maximalist-search-results > div > div:hover {
+  background: var(--max-yellow-bright) !important;
+}
+
+/* ── Cart button ── */
+.maximalist-cart-btn {
+  padding: 8px 14px;
+  background: linear-gradient(135deg, var(--max-pink) 0%, var(--max-purple) 100%);
+  border: 2px solid var(--max-ink);
+  box-shadow: var(--max-shadow-yellow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .maximalist-cart-btn {
+    padding: 10px 16px;
+    border-width: 3px;
+  }
+}
+
+.maximalist-cart-btn--compact {
+  padding: 8px 10px !important;
+}
+
+.maximalist-cart-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--max-lime);
+}
+
+.maximalist-cart-btn .maximalist-cart-label {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.12em;
+  color: var(--max-yellow-bright);
+}
+
+.maximalist-cart-btn .maximalist-cart-price {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  color: #fff;
+}
+
+.maximalist-cart-badge {
+  background: var(--max-yellow) !important;
+  color: var(--max-ink) !important;
+  border: 2px solid var(--max-ink);
+  font-weight: 700;
+  min-width: 1rem;
+  min-height: 1rem;
+}
+
+/* ── Hamburger ── */
+.maximalist-hamburger {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--max-yellow);
+  border: 2px solid var(--max-ink);
+  box-shadow: var(--max-shadow-pink);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.maximalist-hamburger:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--max-purple);
+}
+
+.maximalist-hamburger .max-ham-line {
+  background-color: var(--max-ink) !important;
+}
+
+/* Hamburger ↔ X icon */
+.maximalist-hamburger-icon {
+  width: 20px;
+  height: 16px;
+  position: relative;
+  display: block;
+}
+
+.maximalist-hamburger-icon span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--max-ink);
+  border-radius: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease;
+}
+
+.maximalist-hamburger-icon span:nth-child(1) {
+  top: 0;
+}
+
+.maximalist-hamburger-icon span:nth-child(2) {
+  top: 7px;
+}
+
+.maximalist-hamburger-icon span:nth-child(3) {
+  top: 14px;
+}
+
+.maximalist-hamburger.is-open .maximalist-hamburger-icon span:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.maximalist-hamburger.is-open .maximalist-hamburger-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.maximalist-hamburger.is-open .maximalist-hamburger-icon span:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+/* ── Nav bar strip ── */
+.maximalist-nav-strip {
+  background: linear-gradient(
+    135deg,
+    var(--max-purple-deep) 0%,
+    var(--max-purple) 35%,
+    var(--max-pink) 70%,
+    var(--max-orange) 100%
+  );
+  border-top: 3px solid var(--max-ink);
+  position: relative;
+}
+
+.maximalist-nav-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(250, 204, 21, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(20, 184, 166, 0.15) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+/* ── Nav link pills ── */
+.maximalist-nav-pill {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 0.9375rem;
+  letter-spacing: 0.12em;
+  padding: 4px 14px;
+  border: 2px solid var(--max-ink);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.maximalist-nav-pill:hover {
+  transform: translate(-2px, -2px);
+}
+
+.maximalist-nav-pill.is-active {
+  transform: translate(-2px, -2px);
+}
+
+.maximalist-nav-pill--home {
+  background: var(--max-yellow);
+  color: var(--max-ink);
+  box-shadow: 2px 2px 0 var(--max-pink);
+}
+.maximalist-nav-pill--home:hover,
+.maximalist-nav-pill--home.is-active {
+  box-shadow: 4px 4px 0 var(--max-pink);
+}
+
+.maximalist-nav-pill--shop {
+  background: var(--max-pink-hot);
+  color: var(--max-ink);
+  box-shadow: 2px 2px 0 var(--max-teal);
+}
+.maximalist-nav-pill--shop:hover,
+.maximalist-nav-pill--shop.is-active {
+  box-shadow: 4px 4px 0 var(--max-teal);
+}
+
+.maximalist-nav-pill--about {
+  background: var(--max-lime);
+  color: var(--max-ink);
+  box-shadow: 2px 2px 0 var(--max-purple);
+}
+.maximalist-nav-pill--about:hover,
+.maximalist-nav-pill--about.is-active {
+  box-shadow: 4px 4px 0 var(--max-purple);
+}
+
+.maximalist-nav-pill--contact {
+  background: var(--max-teal);
+  color: var(--max-ink);
+  box-shadow: 2px 2px 0 var(--max-yellow);
+}
+.maximalist-nav-pill--contact:hover,
+.maximalist-nav-pill--contact.is-active {
+  box-shadow: 4px 4px 0 var(--max-yellow);
+}
+
+.maximalist-nav-pill--cart {
+  background: var(--max-orange);
+  color: var(--max-ink);
+  box-shadow: 2px 2px 0 var(--max-pink);
+}
+.maximalist-nav-pill--cart:hover,
+.maximalist-nav-pill--cart.is-active {
+  box-shadow: 4px 4px 0 var(--max-pink);
+}
+
+.maximalist-nav-pill--default {
+  background: var(--max-yellow-bright);
+  color: var(--max-ink);
+  box-shadow: 2px 2px 0 var(--max-purple);
+}
+
+/* ── Mobile menu panel ── */
+.maximalist-mobile-nav {
+  border: 3px solid var(--max-ink) !important;
+  background: var(--max-cream) !important;
+  box-shadow: 5px 5px 0 var(--max-purple), 8px 8px 0 var(--max-pink) !important;
+  border-radius: 4px !important;
+}
+
+.maximalist-mobile-nav .maximalist-nav-pill {
+  width: 100%;
+  justify-content: center;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+}
+
+/* ── Wishlist link ── */
+.maximalist-wishlist-link {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 0.9375rem;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #fff !important;
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.maximalist-wishlist-link:hover {
+  background: var(--max-yellow);
+  color: var(--max-ink) !important;
+  border-color: var(--max-ink);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--max-ink);
+}
+
+.maximalist-wishlist-link svg {
+  fill: currentColor;
+}
+
+/* ── Dropdown (submenu) ── */
+.maximalist-dropdown .dropdown {
+  border: 2px solid var(--max-ink) !important;
+  box-shadow: var(--max-shadow-yellow) !important;
+  border-radius: 2px !important;
+  background: var(--max-cream) !important;
+}
+
+.maximalist-dropdown .dropdown a:hover {
+  background: var(--max-pink-hot) !important;
+  color: var(--max-ink) !important;
+}

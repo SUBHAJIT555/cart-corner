@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════════════════
+   Cart Corner — Design Tokens & Global Base
+   Soft Brutalism · Premium Dark Theme
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Brand palette */
+  --cc-bg: #111111;
+  --cc-surface: #1a1a1a;
+  --cc-card: #242424;
+  --cc-border: #3a3a3a;
+  --cc-text: #ffffff;
+  --cc-text-secondary: #c6c6c6;
+  --cc-muted: #888888;
+  --cc-accent: #ffd54f;
+  --cc-accent-hover: #ffe082;
+  --cc-success: #4caf50;
+  --cc-danger: #f44336;
+
+  /* Radius */
+  --cc-radius-card: 20px;
+  --cc-radius-btn: 18px;
+  --cc-radius-input: 18px;
+  --cc-radius-modal: 24px;
+  --cc-radius-product: 24px;
+  --cc-radius-image: 20px;
+  --cc-radius-nav: 20px;
+
+  /* Borders */
+  --cc-border-width: 2px;
+  --cc-border-width-thick: 3px;
+
+  /* Shadows — minimal, brutalist offset */
+  --cc-shadow-sm: 3px 3px 0 var(--cc-border);
+  --cc-shadow-md: 4px 4px 0 var(--cc-border);
+  --cc-shadow-hover: 6px 6px 0 var(--cc-accent);
+  --cc-shadow-accent: 4px 4px 0 var(--cc-accent);
+
+  /* Map legacy minimal vars */
+  --min-ink: var(--cc-text);
+  --min-muted: var(--cc-muted);
+  --min-border: var(--cc-border);
+  --min-bg: var(--cc-surface);
+  --min-surface: var(--cc-card);
+  --min-pattern: var(--cc-border);
+
+  /* Typography */
+  --font-sans: "Google Sans", system-ui, sans-serif;
+  --font-body: var(--font-sans);
+  --font-heading: var(--font-sans);
+
+  /* Spacing */
+  --cc-container: 1280px;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--cc-bg);
+  color: var(--cc-text-secondary);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-heading {
+  font-family: var(--font-sans);
+  color: var(--cc-text);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Section headings */
+.cc-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cc-text);
+}
+
+.cc-section-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cc-accent);
+  margin-bottom: 0.5rem;
+}
+
+/* Brutalist card */
+.cc-card {
+  background: var(--cc-card);
+  border: var(--cc-border-width) solid var(--cc-border);
+  border-radius: var(--cc-radius-card);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cc-card:hover {
+  border-color: var(--cc-accent);
+  transform: translateY(-3px);
+  box-shadow: var(--cc-shadow-hover);
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--cc-accent);
+  outline-offset: 3px;
+}
+
+/* Site main content offset for fixed header */
+main,
+.minimal-hero,
+[class*="-page"] {
+  color: var(--cc-text-secondary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cc-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cc-border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cc-muted);
+}
+
+/* ── Dark theme overrides for legacy Tailwind utilities ── */
+.text-gray-900 { color: var(--cc-text) !important; }
+.text-gray-800 { color: var(--cc-text) !important; }
+.text-gray-700 { color: var(--cc-text-secondary) !important; }
+.text-gray-600,
+.text-gray-500,
+.text-gray-400 { color: var(--cc-muted) !important; }
+.text-dark { color: var(--cc-text) !important; }
+.text-body { color: var(--cc-text-secondary) !important; }
+
+.bg-white { background-color: var(--cc-card) !important; }
+.bg-gray-50,
+.bg-gray-100 { background-color: var(--cc-surface) !important; }
+.bg-gray-2,
+.bg-gray-1 { background-color: var(--cc-surface) !important; }
+.bg-meta { background-color: var(--cc-bg) !important; }
+
+.border-gray-200,
+.border-gray-300,
+.border-gray-3,
+.border-gray-4 { border-color: var(--cc-border) !important; }
+
+.hover\:bg-gray-100:hover { background-color: var(--cc-surface) !important; }
+.hover\:text-gray-900:hover { color: var(--cc-accent) !important; }
+.hover\:text-gray-700:hover { color: var(--cc-text) !important; }
+
+.shadow-1 { box-shadow: var(--cc-shadow-sm) !important; }
+.shadow-2 { box-shadow: var(--cc-shadow-md) !important; }
+.shadow-testimonial { box-shadow: var(--cc-shadow-md) !important; }
+
+.text-amber-400 { color: var(--cc-accent) !important; }
+.text-blue { color: var(--cc-accent) !important; }
+.hover\:text-blue:hover { color: var(--cc-accent-hover) !important; }
+.bg-blue { background-color: var(--cc-accent) !important; }
+.hover\:bg-blue:hover { background-color: var(--cc-accent-hover) !important; }

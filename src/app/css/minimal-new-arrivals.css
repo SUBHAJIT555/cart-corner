@@ -1,0 +1,154 @@
+.minimal-new-arrivals {
+  --primary: var(--cc-border);
+  --card-surface: var(--cc-card);
+}
+
+
+.new-arrival-card {
+  --primary: var(--cc-border);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--cc-radius-product);
+  border: 3px solid var(--cc-border);
+  background: var(--cc-card);
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
+  text-align: left;
+}
+
+.new-arrival-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: var(--cc-accent);
+  box-shadow: var(--cc-shadow-hover);
+}
+
+.new-arrival-card__pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      var(--primary) 0,
+      var(--primary) 1px,
+      transparent 0,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      var(--primary) 0,
+      var(--primary) 1px,
+      transparent 0,
+      transparent 50%
+    );
+  background-size: 5px 5px;
+  opacity: 0.4;
+}
+
+.new-arrival-card__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 0.875rem;
+}
+
+.new-arrival-card__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--cc-radius-image);
+  border: 2px solid var(--cc-border);
+  background: var(--cc-surface);
+}
+
+.new-arrival-card__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+  border-radius: var(--cc-radius-btn);
+  border: 2px solid var(--cc-accent);
+  background: var(--cc-accent);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cc-bg);
+  box-shadow: var(--cc-shadow-sm);
+}
+
+.new-arrival-card__image-wrap {
+  display: flex;
+  min-height: 210px;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+}
+
+.new-arrival-card__image-wrap img {
+  transition: transform 0.45s ease;
+}
+
+.new-arrival-card:hover .new-arrival-card__image-wrap img {
+  transform: scale(1.05);
+}
+
+.new-arrival-card__content {
+  flex: 1;
+  padding: 0 0.125rem;
+}
+
+.new-arrival-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.125rem;
+}
+
+.new-arrival-card__icon-btn {
+  display: inline-flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--cc-radius-btn);
+  border: 2px solid var(--cc-border);
+  background: var(--cc-card);
+  color: var(--cc-text-secondary);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.new-arrival-card__icon-btn:hover {
+  border-color: var(--cc-accent);
+  color: var(--cc-accent);
+  background: rgba(255, 213, 79, 0.1);
+}
+
+.new-arrival-card__icon-btn--active {
+  border-color: var(--cc-danger);
+  color: var(--cc-danger);
+  background: rgba(244, 67, 54, 0.12);
+}
+
+.new-arrival-card__candy-btn {
+  min-width: 0;
+  flex: 1;
+  gap: 0.375rem;
+  border-radius: var(--cc-radius-card);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
