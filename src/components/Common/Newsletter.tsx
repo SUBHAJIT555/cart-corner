@@ -7,6 +7,7 @@ import { Mail } from "lucide-react";
 import { newsletterSchema, type NewsletterFormData } from "@/lib/schemas";
 import { CandyButton } from "@/components/ui/candy-button";
 import { cn } from "@/lib/utils";
+import { submitToApi } from "@/lib/submit-api";
 
 const Newsletter = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -32,14 +33,8 @@ const Newsletter = () => {
       formData.append("formType", "newsletter");
       formData.append("email", data.email);
 
-      const res = await fetch("/api/submit.php", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) {
+      const result = await submitToApi(formData);
+      if (!result.success) {
         throw new Error(result.error || "Failed to subscribe");
       }
 

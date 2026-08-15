@@ -1,0 +1,46 @@
+DirectoryIndex index.html index.htm
+Options -MultiViews +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Canonical host (no www). Keep HTTP until AutoSSL/Let's Encrypt is issued
+  # in cPanel — forcing HTTPS with a self-signed cert causes
+  # NET::ERR_CERT_AUTHORITY_INVALID.
+  RewriteCond %{HTTP_HOST} ^www\.cart-corner\.com$ [NC]
+  RewriteRule ^ http://cart-corner.com%{REQUEST_URI} [L,R=301]
+
+  # After AutoSSL is Active, replace the rule above with:
+  # RewriteCond %{HTTPS} !=on [OR]
+  # RewriteCond %{HTTP_HOST} ^www\.cart-corner\.com$ [NC]
+  # RewriteRule ^ https://cart-corner.com%{REQUEST_URI} [L,R=301]
+
+  RewriteRule ^api/submit/?$ api/submit.php [L]
+  RewriteRule ^mail\.php$ api/submit.php [L]
+
+  # Next.js static export: /about -> about.html
+  RewriteRule ^cart/?$ cart.html [L]
+  RewriteRule ^checkout/?$ checkout.html [L]
+  RewriteRule ^shop/?$ shop.html [L]
+  RewriteRule ^shop-without-sidebar/?$ shop-without-sidebar.html [L]
+  RewriteRule ^wishlist/?$ wishlist.html [L]
+  RewriteRule ^contact/?$ contact.html [L]
+  RewriteRule ^about/?$ about.html [L]
+  RewriteRule ^faqs/?$ faqs.html [L]
+  RewriteRule ^mail-success/?$ mail-success.html [L]
+  RewriteRule ^privacy-policy/?$ privacy-policy.html [L]
+  RewriteRule ^cookie-policy/?$ cookie-policy.html [L]
+  RewriteRule ^terms-of-use/?$ terms-of-use.html [L]
+  RewriteRule ^refund-policy/?$ refund-policy.html [L]
+  RewriteRule ^error/?$ error.html [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^([^.]+)/?$ $1.html [L]
+</IfModule>
+
+<FilesMatch "^\.env">
+  Require all denied
+</FilesMatch>

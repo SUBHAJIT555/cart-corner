@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactFormData } from "@/lib/schemas";
 import { CandyButton } from "@/components/ui/candy-button";
 import { cn } from "@/lib/utils";
+import { submitToApi } from "@/lib/submit-api";
 import { Clock, Globe, Mail, MapPin } from "lucide-react";
 
 const Contact = () => {
@@ -40,14 +41,8 @@ const Contact = () => {
       if (data.phone) formData.append("phone", data.phone);
       if (data.message) formData.append("message", data.message);
 
-      const res = await fetch("/api/submit.php", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) {
+      const result = await submitToApi(formData);
+      if (!result.success) {
         throw new Error(result.error || "Failed to send message");
       }
 

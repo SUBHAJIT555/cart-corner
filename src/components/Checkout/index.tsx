@@ -18,6 +18,7 @@ import Breadcrumb from "../Common/Breadcrumb";
 import Billing from "./Billing";
 import { CandyButton, CandyButtonLink } from "@/components/ui/candy-button";
 import { cn } from "@/lib/utils";
+import { submitToApi } from "@/lib/submit-api";
 
 const CHECKOUT_STEPS = [
   {
@@ -80,14 +81,8 @@ const Checkout = () => {
       formData.append("order_total", total.toString());
       if (data.notes) formData.append("notes", data.notes);
 
-      const res = await fetch("/api/submit.php", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) {
+      const result = await submitToApi(formData);
+      if (!result.success) {
         throw new Error(result.error || "Failed to submit quote request");
       }
 
