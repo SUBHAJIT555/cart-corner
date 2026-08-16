@@ -30,6 +30,7 @@ const CategoryCard = ({ category, index }: CategoryCardProps) => {
             alt={category.title}
             width={280}
             height={200}
+            unoptimized
             className="category-card__image"
           />
           <span className="category-card__arrow" aria-hidden>
