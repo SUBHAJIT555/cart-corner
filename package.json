@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "php:api": "C:/xampp/php/php.exe -S 127.0.0.1:8088 -t public/api",
+    "build": "next build && node scripts/copy-html-indexes.js",
     "start": "next start",
     "lint": "next lint"
   },

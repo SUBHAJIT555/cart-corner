@@ -1,6 +1,7 @@
 export const siteConfig = {
   brand: {
     name: "Cart Corner",
+    legalName: "ECHOZIA DIGITAL STUDIO PRIVATE LIMITED",
     domain: "cart-corner.com",
     url: "https://cart-corner.com",
     description:
@@ -12,12 +13,12 @@ export const siteConfig = {
       general: "info@cart-corner.com",
     },
     address: {
-      street: "Cart Corner",
-      city: "Mumbai",
+      street: "5th Floor, 501, Raunak Arcade B Wing, Gokhale Road, Naupada",
+      city: "Thane",
       state: "Maharashtra",
-      zip: "400001",
-      full: "Mumbai, Maharashtra, India",
-      location: "India",
+      zip: "400602",
+      full: "5th Floor, 501, Raunak Arcade B Wing, Gokhale Road, Naupada, Thane, Maharashtra, India, 400602",
+      location: "Naupada, Thane",
     },
     businessHours: "Mon - Sat: 9 AM - 6 PM IST",
   },

@@ -28,6 +28,9 @@ yarn-error.log*
 .env
 .env*.local
 /public/.env
+mpurse.env
+public/api/.env
+public/api/data/*.json
 
 # vercel
 .vercel

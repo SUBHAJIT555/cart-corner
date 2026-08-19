@@ -79,7 +79,7 @@ const features = [
   {
     icon: ShieldCheck,
     title: "Secure Payments",
-    text: "Pay safely with UPI, cards, and other methods. Your data is protected with secure encryption.",
+    text: "Pay safely with UPI. Card and net banking will be added when the gateway enables them.",
     candy: "green" as const,
   },
   {
@@ -141,7 +141,7 @@ const About = () => {
                 <Logo iconClassName="size-7" textClassName="text-lg" />
               </div>
               <p className="minimal-about__brand-tagline">
-                Made in India · For India
+                {siteConfig.brand.legalName}
               </p>
               <p className="minimal-about__brand-quote">
                 &ldquo;Honest prices, reliable service, products you can
@@ -209,10 +209,13 @@ const About = () => {
               mind.
             </p>
             <p>
+              {siteConfig.brand.name} is operated by {siteConfig.brand.legalName}.
               As an Indian brand, we understand what you need: reliable delivery
-              across the country, easy returns, secure payments including UPI and
-              cards, and support when you need it. We are here to serve India,
-              one order at a time.
+              across the country, easy returns, secure UPI payments, and support
+              when you need it. We are here to serve India, one order at a time.
+            </p>
+            <p>
+              Registered office: {siteConfig.brand.address.full}.
             </p>
           </div>
         </div>

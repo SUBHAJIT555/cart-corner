@@ -1,63 +1,78 @@
 import React from "react";
-import Image from "next/image";
+import { UseFormRegister, UseFormWatch } from "react-hook-form";
+import { QuoteFormData } from "@/lib/schemas";
+import { cn } from "@/lib/utils";
 
 const PAYMENT_OPTIONS = [
-  { id: "cash", value: "cash", label: "Cash on delivery", icon: "/images/checkout/cash.svg", iconSize: { w: 21, h: 21 } },
-  { id: "upi", value: "upi", label: "UPI", icon: "/images/checkout/bank.svg", iconSize: { w: 29, h: 12 } },
-  { id: "online_banking", value: "online_banking", label: "Online Banking", icon: "/images/checkout/bank.svg", iconSize: { w: 29, h: 12 } },
+  {
+    id: "upi",
+    value: "upi",
+    label: "UPI",
+    hint: "Phone: open UPI app. Computer: scan QR with your phone",
+    enabled: true,
+  },
+  {
+    id: "card",
+    value: "card",
+    label: "Debit / Credit card",
+    hint: "Coming soon. Use UPI for now.",
+    enabled: false,
+  },
+  {
+    id: "netbanking",
+    value: "netbanking",
+    label: "Net banking",
+    hint: "Coming soon. Use UPI for now.",
+    enabled: false,
+  },
 ] as const;
 
 type PaymentMethodProps = {
-  value?: string;
-  onChange?: (value: string) => void;
+  register: UseFormRegister<QuoteFormData>;
+  watch: UseFormWatch<QuoteFormData>;
 };
 
-const PaymentMethod = ({ value = "cash", onChange }: PaymentMethodProps) => {
-  return (
-    <div className="bg-white shadow-1 rounded-[10px] mt-7.5">
-      <div className="border-b border-gray-3 py-5 px-4 sm:px-8.5">
-        <h3 className="font-medium text-xl text-dark">Payment Method</h3>
-      </div>
+const PaymentMethod = ({ register, watch }: PaymentMethodProps) => {
+  const method = watch("paymentMethod");
 
-      <div className="p-4 sm:p-8.5">
-        <div className="flex flex-col gap-3">
+  return (
+    <div className="minimal-checkout-page__panel">
+      <div className="minimal-checkout-page__panel-head">Payment method</div>
+
+      <div className="minimal-checkout-page__panel-body">
+        <p className="checkout-pay__intro">Pay with UPI for now</p>
+        <div className="checkout-pay__options">
           {PAYMENT_OPTIONS.map((opt) => (
             <label
               key={opt.id}
               htmlFor={opt.id}
-              className="flex cursor-pointer select-none items-center gap-4"
+              className={cn(
+                "checkout-pay__option",
+                !opt.enabled && "checkout-pay__option--disabled",
+                opt.enabled && method === opt.value && "checkout-pay__option--active"
+              )}
             >
-              <div className="relative">
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id={opt.id}
-                  value={opt.value}
-                  className="sr-only"
-                  checked={value === opt.value}
-                  onChange={() => onChange?.(opt.value)}
-                />
-                <div
-                  className={`flex h-4 w-4 items-center justify-center rounded-full ${
-                    value === opt.value ? "border-4 border-blue" : "border border-gray-4"
-                  }`}
-                />
-              </div>
-
-              <div
-                className={`rounded-md border-[0.5px] py-3.5 px-5 ease-out duration-200 hover:bg-gray-2 hover:border-transparent hover:shadow-none min-w-[240px] ${
-                  value === opt.value ? "border-transparent bg-gray-2" : " border-gray-4 shadow-1"
-                }`}
-              >
-                <div className="flex items-center">
-                  <div className="pr-2.5">
-                    <Image src={opt.icon} alt={opt.label} width={opt.iconSize.w} height={opt.iconSize.h} />
-                  </div>
-                  <div className="border-l border-gray-4 pl-2.5">
-                    <p>{opt.label}</p>
-                  </div>
-                </div>
-              </div>
+              <input
+                type="radio"
+                id={opt.id}
+                value={opt.value}
+                className="sr-only"
+                disabled={!opt.enabled}
+                {...register("paymentMethod")}
+              />
+              <span
+                className={cn(
+                  "checkout-pay__radio",
+                  opt.enabled && method === opt.value && "checkout-pay__radio--on"
+                )}
+              />
+              <span>
+                <span className="checkout-pay__label">
+                  {opt.label}
+                  {!opt.enabled ? " — coming soon" : ""}
+                </span>
+                <span className="checkout-pay__hint">{opt.hint}</span>
+              </span>
             </label>
           ))}
         </div>

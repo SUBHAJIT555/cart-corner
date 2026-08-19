@@ -22,7 +22,7 @@ const FAQs = () => {
     {
       question: "What payment methods do you accept?",
       answer:
-        "We accept UPI, debit and credit cards (Visa, MasterCard, RuPay), net banking, and other popular Indian payment options. All payments are processed securely.",
+        "We accept UPI on phone (open your UPI app) and desktop (scan a QR). Card and net banking will be added once they are enabled for this merchant.",
     },
     {
       question: "What is your return policy?",

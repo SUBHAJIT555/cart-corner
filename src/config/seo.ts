@@ -41,11 +41,11 @@ export const pageSeo = {
   ),
   cart: pageMetadata(
     "Cart",
-    `Review items in your cart at ${brand} and proceed to request a quote.`
+    `Review items in your cart at ${brand} and proceed to checkout.`
   ),
   checkout: pageMetadata(
     "Checkout",
-    `Request a quote for your cart at ${brand}. Share your details and we'll confirm pricing within 24 hours.`
+    `Pay securely with UPI at ${brand}. Enter your details and complete payment.`
   ),
   wishlist: pageMetadata(
     "Wishlist",
@@ -81,7 +81,7 @@ export const pageSeo = {
   ),
   mailSuccess: pageMetadata(
     "Quote Request Sent",
-    `Your quote request was received. ${brand} will review your cart and get back to you shortly.`
+    `Your message was received. ${brand} will get back to you shortly.`
   ),
   error: pageMetadata(
     "Something Went Wrong",

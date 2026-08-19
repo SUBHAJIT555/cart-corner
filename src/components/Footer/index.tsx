@@ -34,6 +34,9 @@ const Footer = () => {
             <p className="minimal-footer__brand-desc">
               {siteConfig.brand.description}
             </p>
+            <p className="minimal-footer__legal-name">
+              {siteConfig.brand.legalName}
+            </p>
           </div>
 
           <div className="minimal-footer__col">
@@ -70,7 +73,7 @@ const Footer = () => {
                   <MapPin className="size-4" strokeWidth={2} />
                 </span>
                 <span className="minimal-footer__contact-value">
-                  {siteConfig.brand.address.location}
+                  {siteConfig.brand.address.full}
                 </span>
               </div>
               <div className="minimal-footer__contact-row">
@@ -93,7 +96,8 @@ const Footer = () => {
 
         <div className="minimal-footer__bottom">
           <p className="minimal-footer__copyright">
-            &copy; {year} {siteConfig.brand.name}. All rights reserved.
+            &copy; {year} {siteConfig.brand.name}. Operated by{" "}
+            {siteConfig.brand.legalName}. All rights reserved.
           </p>
 
           <div className="minimal-footer__payments">

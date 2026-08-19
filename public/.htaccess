@@ -1,9 +1,14 @@
 DirectoryIndex index.html index.htm
-Options -MultiViews +FollowSymLinks
+Options -Indexes -MultiViews +FollowSymLinks
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Never serve env or order snapshots
+  RewriteRule (^|/)\.env$ - [F,L]
+  RewriteRule (^|/)mpurse\.env$ - [F,L]
+  RewriteRule ^api/data/ - [F,L]
 
   # Canonical host (no www). Keep HTTP until AutoSSL/Let's Encrypt is issued
   # in cPanel — forcing HTTPS with a self-signed cert causes
@@ -17,11 +22,23 @@ Options -MultiViews +FollowSymLinks
   # RewriteRule ^ https://cart-corner.com%{REQUEST_URI} [L,R=301]
 
   RewriteRule ^api/submit/?$ api/submit.php [L]
+  RewriteRule ^api/mpurse/?$ api/mpurse.php [L]
+  RewriteRule ^api/mpurse-webhook/?$ api/mpurse-webhook.php [L]
   RewriteRule ^mail\.php$ api/submit.php [L]
 
-  # Next.js static export: /about -> about.html
+  # If /checkout/ (or /pay/, /cart/, …) is a folder without index.html,
+  # serve the sibling checkout.html so LiteSpeed does not list the directory.
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteCond %{DOCUMENT_ROOT}/$1 -d
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ /$1.html [L,QSA]
+
+  # Next.js static export pretty URLs
   RewriteRule ^cart/?$ cart.html [L]
   RewriteRule ^checkout/?$ checkout.html [L]
+  RewriteRule ^pay/?$ pay.html [L]
+  RewriteRule ^order-status/?$ order-status.html [L]
   RewriteRule ^shop/?$ shop.html [L]
   RewriteRule ^shop-without-sidebar/?$ shop-without-sidebar.html [L]
   RewriteRule ^wishlist/?$ wishlist.html [L]
@@ -35,8 +52,8 @@ Options -MultiViews +FollowSymLinks
   RewriteRule ^refund-policy/?$ refund-policy.html [L]
   RewriteRule ^error/?$ error.html [L]
 
+  RewriteCond %{REQUEST_URI} !^/api/
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^([^.]+)/?$ $1.html [L]
 </IfModule>

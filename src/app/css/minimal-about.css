@@ -154,9 +154,10 @@
 }
 
 .minimal-about__brand-tagline {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
   text-transform: uppercase;
   color: var(--cc-muted);
 }

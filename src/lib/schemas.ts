@@ -13,23 +13,36 @@ export const contactSchema = z.object({
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Please enter a valid email address"),
   subject: z.string().optional(),
-  phone: z.string().optional(),
   message: z.string().optional(),
 });
 
 export type ContactFormData = z.infer<typeof contactSchema>;
 
-// Quote/Checkout Schema
+function isIndianMobile(value: string) {
+  const digits = value.replace(/\D/g, "");
+  const national =
+    digits.length === 12 && digits.startsWith("91")
+      ? digits.slice(2)
+      : digits.length === 11 && digits.startsWith("0")
+        ? digits.slice(1)
+        : digits;
+  return /^[6-9]\d{9}$/.test(national);
+}
+
 export const quoteSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(1, "Phone is required"),
+  phone: z
+    .string()
+    .min(1, "Phone is required")
+    .refine(isIndianMobile, "Enter a valid 10-digit Indian mobile number"),
   address: z.string().min(1, "Street address is required"),
   town: z.string().min(1, "Town/City is required"),
   state: z.string().optional(),
   postcode: z.string().optional(),
   notes: z.string().optional(),
+  paymentMethod: z.enum(["upi", "card", "netbanking"]),
 });
 
 export type QuoteFormData = z.infer<typeof quoteSchema>;

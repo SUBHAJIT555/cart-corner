@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import { useCartModalContext } from "@/app/context/CartSidebarModalContext";
 import {
@@ -9,15 +10,21 @@ import {
 } from "@/redux/features/cart-slice";
 import { useAppSelector } from "@/redux/store";
 import { useSelector } from "react-redux";
-import { CandyButtonLink } from "@/components/ui/candy-button";
+import { CandyButton } from "@/components/ui/candy-button";
 import { cn } from "@/lib/utils";
 import SingleItem from "./SingleItem";
 import EmptyCart from "./EmptyCart";
 
 const CartSidebarModal = () => {
+  const router = useRouter();
   const { isCartModalOpen, closeCartModal } = useCartModalContext();
   const cartItems = useAppSelector((state) => state.cartReducer.items);
   const totalPrice = useSelector(selectTotalPrice);
+
+  const goTo = (path: string) => {
+    router.push(path);
+    window.setTimeout(() => closeCartModal(), 80);
+  };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -105,21 +112,21 @@ const CartSidebarModal = () => {
               </div>
 
               <div className="minimal-cart-drawer__actions">
-                <CandyButtonLink
-                  href="/cart"
-                  onClick={closeCartModal}
+                <CandyButton
+                  type="button"
+                  onClick={() => goTo("/cart")}
                   className="minimal-cart-drawer__action-btn"
                 >
                   View Cart
-                </CandyButtonLink>
-                <CandyButtonLink
-                  href="/checkout"
+                </CandyButton>
+                <CandyButton
+                  type="button"
                   variant="success"
-                  onClick={closeCartModal}
+                  onClick={() => goTo("/checkout")}
                   className="minimal-cart-drawer__action-btn"
                 >
                   Checkout
-                </CandyButtonLink>
+                </CandyButton>
               </div>
             </div>
           )}

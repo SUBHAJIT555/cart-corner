@@ -51,6 +51,17 @@
   color: var(--cc-muted);
 }
 
+.minimal-footer__legal-name {
+  margin-top: 0.75rem;
+  max-width: 22rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: var(--cc-text-secondary);
+}
+
 .minimal-footer__heading {
   margin-bottom: 1rem;
   font-family: var(--font-sans);
@@ -88,7 +99,7 @@
 
 .minimal-footer__contact-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
 }
 

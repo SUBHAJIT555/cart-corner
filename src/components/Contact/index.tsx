@@ -9,7 +9,7 @@ import { contactSchema, type ContactFormData } from "@/lib/schemas";
 import { CandyButton } from "@/components/ui/candy-button";
 import { cn } from "@/lib/utils";
 import { submitToApi } from "@/lib/submit-api";
-import { Clock, Globe, Mail, MapPin } from "lucide-react";
+import { Building2, Clock, Globe, Mail, MapPin } from "lucide-react";
 
 const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -38,7 +38,6 @@ const Contact = () => {
       formData.append("firstName", data.firstName);
       formData.append("lastName", data.lastName);
       if (data.subject) formData.append("subject", data.subject);
-      if (data.phone) formData.append("phone", data.phone);
       if (data.message) formData.append("message", data.message);
 
       const result = await submitToApi(formData);
@@ -120,6 +119,18 @@ const Contact = () => {
                       >
                         {siteConfig.brand.domain}
                       </a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="minimal-contact-page__detail">
+                  <span className="minimal-contact-page__detail-icon" aria-hidden>
+                    <Building2 className="size-4" strokeWidth={1.75} />
+                  </span>
+                  <div>
+                    <p className="minimal-contact-page__detail-label">Legal entity</p>
+                    <p className="minimal-contact-page__detail-value">
+                      {siteConfig.brand.legalName}
                     </p>
                   </div>
                 </div>
@@ -235,39 +246,20 @@ const Contact = () => {
                       )}
                     </div>
 
-                    <div className="minimal-contact-page__row">
-                      <div className="minimal-contact-page__field">
-                        <label
-                          htmlFor="subject"
-                          className="minimal-contact-page__label"
-                        >
-                          Subject
-                        </label>
-                        <input
-                          type="text"
-                          {...register("subject")}
-                          id="subject"
-                          placeholder="How can we help?"
-                          className="minimal-contact-page__input"
-                        />
-                      </div>
-
-                      <div className="minimal-contact-page__field">
-                        <label
-                          htmlFor="phone"
-                          className="minimal-contact-page__label"
-                        >
-                          Phone
-                        </label>
-                        <input
-                          type="tel"
-                          {...register("phone")}
-                          id="phone"
-                          placeholder="+91 98765 43210"
-                          autoComplete="tel"
-                          className="minimal-contact-page__input"
-                        />
-                      </div>
+                    <div className="minimal-contact-page__field">
+                      <label
+                        htmlFor="subject"
+                        className="minimal-contact-page__label"
+                      >
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        {...register("subject")}
+                        id="subject"
+                        placeholder="How can we help?"
+                        className="minimal-contact-page__input"
+                      />
                     </div>
 
                     <div className="minimal-contact-page__field">
